@@ -56,6 +56,7 @@
                 else
                 {
                     Console.WriteLine("Sorry You Are Leaving, Please Stop By Again. \n" + "Have a nice day!");
+
                     return; // completes right here.
                 }
             }
@@ -76,8 +77,8 @@
                         var guestSelection = "";
                         /*
                         Ask Guests For Drink Order
-                        StartOverCase Explaination: 
-                        Case 0 = Intial Ask  
+                        StartOverCase Explanation: 
+                        Case 0 = Initial Ask  
                         Case 1 = Invalid Response And Try Again  
                         Case 2 = User Declined A Drink 
                         */
@@ -101,7 +102,8 @@
                             Console.WriteLine("Ok  Guest " + i + " orders nothing... Moving on.");
                             startOverCase = 0;
                             AddPadding(padding);
-                            guestSelection = "none";
+                            chooseBeverage = true;
+                            continue;
                         }
                         Console.ForegroundColor = ConsoleColor.White;
 
