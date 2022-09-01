@@ -108,8 +108,7 @@
 
     public void PrintReceipt()
     {
-
-        BillSummary summary = _pricingEngine.CalculateCost(Guests);
+        var summary = _pricingEngine.CalculateCost(Guests);
 
         // Present Total Bill
         Console.WriteLine("Thank you for dining at Greasy Jean's!");
@@ -128,6 +127,7 @@
 
         var sodaTotal = Guests.Where(x => x.DrinkSelection == Drink.Soda).Count();
         var waterTotal = Guests.Where(x => x.DrinkSelection == Drink.Water).Count();
+
         //Do Not Show Line Items On Receipt If Zero Ordered//
         if (sodaTotal > 0)
         {
@@ -136,23 +136,21 @@
 
         if (waterTotal > 0)
         {
-            Console.WriteLine($"{"Water",-15} | {waterTotal,-6} | {"FREE!",-10} | {"$0.00",-10}");
+            $"{"Water",-15} | {waterTotal,-6} | {"FREE!",-10} | {"$0.00",-10}".ToConsole();
         }
 
         //Finish Building Receipt//
-        Console.WriteLine("--------------------------------------------------");
+        "--------------------------------------------------".ToConsole();
         ConsoleHelpers.AddPadding();
 
-        Console.WriteLine($"Total Bill ------------------------------${summary.TotalBill}");
+        $"Total Bill ------------------------------${summary.TotalBill}".ToConsole();
         ConsoleHelpers.AddPadding();
 
-        Console.WriteLine("------------------Add Gratuity--------------------");
-        Console.WriteLine("     5%    |    10%     |    15%     |    20%     ");
-        Console.WriteLine(
-            $"{$"  ${Math.Round((summary.TotalBuffetCost * 1.05), 2):0.00}",-10} | {$" ${Math.Round((summary.TotalBuffetCost * 1.10), 2):0.00}",-10} | {" $" + $"{Math.Round((summary.TotalBuffetCost * 1.15), 2):0.00}",-10} | {" $" + $"{Math.Round((summary.TotalBuffetCost * 1.20), 2):0.00}",-10}");
-        Console.WriteLine("--------------------------------------------------");
+        "------------------Add Gratuity--------------------".ToConsole();
+        "     5%    |    10%     |    15%     |    20%     ".ToConsole();
+        $"{$"  ${Math.Round((summary.TotalBuffetCost * 1.05), 2):0.00}",-10} | {$" ${Math.Round((summary.TotalBuffetCost * 1.10), 2):0.00}",-10} | {" $" + $"{Math.Round((summary.TotalBuffetCost * 1.15), 2):0.00}",-10} | {" $" + $"{Math.Round((summary.TotalBuffetCost * 1.20), 2):0.00}",-10}".ToConsole();
+        "--------------------------------------------------".ToConsole();
 
-        //Thank Guests//
         Console.ForegroundColor = ConsoleColor.White;
         ConsoleHelpers.AddPadding();
 
